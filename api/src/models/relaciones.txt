@@ -1,0 +1,11 @@
+[ ] Receta con las siguientes propiedades:
+ID: *
+Nombre *
+Resumen del plato *
+Puntuación
+Nivel de "comida saludable"
+Paso a paso
+
+[ ] Tipo de dieta con las siguientes propiedades:
+ID
+Nombre
