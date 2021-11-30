@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch , useSelector } from "react-redux"
-import { getRecipes, getDetail, getDiets } from "../Redux/actions";
+import { getRecipes, getDetail, getDiets , filteredByDiet, orderByTitle, orderBySpoonacularScore} from "../Redux/actions";
 import { Link } from "react-router-dom"
 import Card from "./SingleCard";
 import Paginado from "./Paginado";
@@ -31,6 +31,18 @@ export default function Home(){
         dispatch(getDiets())
     },[dispatch])
     
+    function handleFilteredDiet(e){
+        dispatch(filteredByDiet(e.target.value))
+    }
+
+    function handleSortedRecipesTitle(e){
+        dispatch(orderByTitle(e.target.value))
+    }
+
+    function handleSortedRecipesSpoonScore(e){
+        dispatch(orderBySpoonacularScore(e.target.value))
+    }
+
     return (
         <div>
            <Link to="/create">Create Recipe</Link>
@@ -38,27 +50,28 @@ export default function Home(){
            <Paginado recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginado={paginado}></Paginado>
             <div>
                 
-                <select>
+                <select onChange={(e) => handleSortedRecipesTitle(e)}>
                     <option value="">Select Order</option>
                     <option value="Asc">A to Z</option>
                     <option value="Desc">Z to A</option>
                 </select>
-                <select>
+                <select onChange={(e) => handleSortedRecipesSpoonScore(e)}>
                     <option value="">Select Score</option>
                     <option value="SpoonacularMax">Max Score</option>
                     <option value="SpoonacularMin">Min Score</option>
                 </select>
-                <select>
+                <select onChange={e => handleFilteredDiet(e)}>
                     <option value="">Select Diets</option>
                     {alldiets?.map(diet => {
-                        <option value={diet.diets}>{diet.diets}</option>
+                        return ( <option value={diet.name}>{diet.name}</option>)
+                       
                     })
                     }
                 </select>
             </div>
             <div>
                 {currentRecipes?.map(recipe => {
-                    return (<Card image={recipe.image} title={recipe.title} diets={recipe.diets + " "}></Card>)
+                    return (<Card image={recipe.image} title={recipe.title} diets={recipe.diets.map(r => r.name) + " "}></Card>)
                     })
                 }
             </div>

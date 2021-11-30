@@ -6,7 +6,7 @@ export default function LandingPage(){
         <div>
             <h1>The Hungry Api</h1>
             <Link to ="/home">
-                <button>Give me food!</button>
+                <button>Bite me!</button>
             </Link>
         </div>
     )
