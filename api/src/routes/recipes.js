@@ -13,7 +13,7 @@ router.get("/", async (req,res,next) =>{ // ver si sin "/" funciona
             if(recipe.length){
                 res.status(200).send(recipe)
             } else {
-                res.status(404).send("Recipe doesn´t exist")
+                res.status(404).send("Recipe doesn´t exist")  // ver si mando un objeto con message error que pasa
             }
         } else {
             res.status(200).send(allRecipes)

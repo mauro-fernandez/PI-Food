@@ -37,7 +37,7 @@ function rootReducer (state = initialState, action){
                 allRecipes: dietFiltered
             }
         case "ORDER_BY_TITLE":
-            let sortedRecipesTitle = action.payload === "Asc" ? 
+            const sortedRecipesTitle = action.payload === "Asc" ? 
                 state.allRecipes.sort(function(a,b) {
                     if(a.title > b.title){
                         return 1
@@ -60,7 +60,7 @@ function rootReducer (state = initialState, action){
                 allRecipes: sortedRecipesTitle
             }
             case "ORDER_BY_SPOONACULAR_SCORE":
-                let sortedRecipesSpoonScore = action.payload === "SpoonacularMax" ? 
+                const sortedRecipesSpoonScore = action.payload === "SpoonacularMax" ? 
                     state.allRecipes.sort(function(a,b) {
                         if(a.spoonacularScore > b.spoonacularScore){
                             return 1
@@ -82,7 +82,15 @@ function rootReducer (state = initialState, action){
                     ...state,
                     allRecipes: sortedRecipesSpoonScore
                 }
-
+            case "SEARCH_RECIPE":
+                return {
+                    ...state,
+                    allRecipes: action.payload
+                }
+            case "POST_RECIPE": //esto lo hizo asi selene, no le veo el sentido
+                return {
+                    ...state
+                }
         default: return state
     }
 } 

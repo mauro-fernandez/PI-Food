@@ -5,13 +5,22 @@ import { getRecipes, getDetail, getDiets , filteredByDiet, orderByTitle, orderBy
 import { Link } from "react-router-dom"
 import Card from "./SingleCard";
 import Paginado from "./Paginado";
+import SearchBar from "./SearchBar";
 
 export default function Home(){
 
     const dispatch = useDispatch()
     const allRecipes = useSelector((state) => state.allRecipes)
-    const alldiets = useSelector((state) => state.diets)
+    const allDiets = useSelector((state) => state.diets)
     
+    useEffect(()=> {
+        dispatch(getRecipes())
+    },[dispatch])
+    
+    useEffect(()=> {
+        dispatch(getDiets())
+    },[dispatch])
+
     const [currentPage, setCurrentPage] = useState(1)
     const [recipesPerPage, setRecipesPerPage] = useState(9)
     const indexOfLastRecipe = currentPage * recipesPerPage
@@ -21,16 +30,7 @@ export default function Home(){
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
-  
-    useEffect(()=> {
-        dispatch(getRecipes())
-    },[dispatch])
-
-    
-    useEffect(()=> {
-        dispatch(getDiets())
-    },[dispatch])
-    
+      
     function handleFilteredDiet(e){
         dispatch(filteredByDiet(e.target.value))
     }
@@ -46,7 +46,8 @@ export default function Home(){
     return (
         <div>
            <Link to="/create">Create Recipe</Link>
-           <h1>Prueba 1</h1>
+           <h1>Recipe Book</h1>
+           <SearchBar></SearchBar>
            <Paginado recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginado={paginado}></Paginado>
             <div>
                 
@@ -62,10 +63,9 @@ export default function Home(){
                 </select>
                 <select onChange={e => handleFilteredDiet(e)}>
                     <option value="">Select Diets</option>
-                    {alldiets?.map(diet => {
+                    {allDiets?.map(diet => {
                         return ( <option value={diet.name}>{diet.name}</option>)
-                       
-                    })
+                        })
                     }
                 </select>
             </div>
@@ -74,8 +74,7 @@ export default function Home(){
                     return (<Card image={recipe.image} title={recipe.title} diets={recipe.diets.map(r => r.name) + " "}></Card>)
                     })
                 }
-            </div>
-        
+            </div>        
         </div>
     )
 }
