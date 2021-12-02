@@ -51,7 +51,7 @@ const searchByIdAtApi = async(id)=>{
             id: detail.id,
             title: detail.title,
             image: detail.image,
-            sumary: detail.sumary,
+            summary: detail.summary,
             spoonacularScore: detail.spoonacularScore,
             healthScore: detail.healthScore,
             diets: detail.diets.map(each => ({ name: each })),

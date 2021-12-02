@@ -44,7 +44,7 @@ export default function Home(){
     }
 
     return (
-        <div>
+        <div>   
            <Link to="/create">Create Recipe</Link>
            <h1>Recipe Book</h1>
            <SearchBar></SearchBar>
@@ -71,7 +71,11 @@ export default function Home(){
             </div>
             <div>
                 {currentRecipes?.map(recipe => {
-                    return (<Card image={recipe.image} title={recipe.title} diets={recipe.diets.map(r => r.name) + " "}></Card>)
+                    return (
+                        <Link to={`/recipe/${recipe.id}`}>
+                        <Card image={recipe.image} title={recipe.title} diets={recipe.diets.map(r => r.name) + " "}></Card>
+                        </Link>
+                        )
                     })
                 }
             </div>        

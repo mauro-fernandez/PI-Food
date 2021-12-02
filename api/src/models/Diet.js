@@ -9,7 +9,6 @@ module.exports = (sequelize) => {
       defaultValue: DataTypes.UUIDV4,
       allowNull: false,
       primaryKey: true
-      // primarykey necesita?? UUIV id?
     },
     name: {
       type: DataTypes.STRING,
