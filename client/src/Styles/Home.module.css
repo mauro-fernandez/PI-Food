@@ -11,13 +11,7 @@
     position:fixed  
 }
 
-.container {
-    display: flex;
-    align-items: center;
-    align-content: center;
-}
-
-.apiTitle {
+.homeTitle {
     color: white;
     flex-direction: column;
     font-family: Lato, Arial, Helvetica, sans-serif;
@@ -29,8 +23,6 @@
     font-family: 'Monoton', cursive;
     letter-spacing: 8px;
     */
-
-
 }
 
 .button {
@@ -54,4 +46,10 @@
     color: #220F00;
     transition-delay: 0.2s;
     transition: 0.8s;
+}
+
+.recipeContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }

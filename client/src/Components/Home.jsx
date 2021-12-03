@@ -6,6 +6,7 @@ import { Link } from "react-router-dom"
 import Card from "./SingleCard";
 import Paginado from "./Paginado";
 import SearchBar from "./SearchBar";
+import styles from "../Styles/Home.module.css"
 
 export default function Home(){
 
@@ -54,9 +55,11 @@ export default function Home(){
     }
 
     return (
-        <div>   
-           <Link to="/create">Create Recipe</Link>
-           <h1>Recipe Book</h1>
+        <div className={styles.background}>   
+           <h1 className={styles.homeTitle}>Recipe Book</h1>
+            <Link to="/create">
+               <button className={styles.button}>Create Recipe</button>
+            </Link>
            <SearchBar></SearchBar>
            <Paginado recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginado={paginado}></Paginado>
             <div>
@@ -79,7 +82,7 @@ export default function Home(){
                     }
                 </select>
             </div>
-            <div>
+            <div className={styles.recipeContainer}>
                 {currentRecipes?.map(recipe => {
                     return (
                         <Link to={`/recipe/${recipe.id}`}>
