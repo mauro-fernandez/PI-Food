@@ -86,7 +86,7 @@ export default function RecipeCreate(){
 
     useEffect(()=> {
         dispatch(getDiets())
-    },[])
+    })
     
     return(
         <div>

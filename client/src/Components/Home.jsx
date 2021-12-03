@@ -13,14 +13,15 @@ export default function Home(){
     const allRecipes = useSelector((state) => state.allRecipes)
     const allDiets = useSelector((state) => state.diets)
     
-    useEffect(()=> {
+    useEffect(() => {
         dispatch(getRecipes())
     },[dispatch])
     
-    useEffect(()=> {
+    useEffect(() => {
         dispatch(getDiets())
     },[dispatch])
 
+    // Paginado
     const [currentPage, setCurrentPage] = useState(1)
     const [recipesPerPage, setRecipesPerPage] = useState(9)
     const indexOfLastRecipe = currentPage * recipesPerPage
@@ -30,17 +31,26 @@ export default function Home(){
     const paginado = (pageNumber) => {
         setCurrentPage(pageNumber)
     }
-      
+    
+    // estados locales para renderizar los globales
+    const [order,setOrder] = useState("")
+    const [score,setScore] = useState("")
+
+    // Handle de cada select
     function handleFilteredDiet(e){
         dispatch(filteredByDiet(e.target.value))
     }
 
     function handleSortedRecipesTitle(e){
         dispatch(orderByTitle(e.target.value))
+        setCurrentPage(1)
+        setOrder(e.target.value)
     }
 
     function handleSortedRecipesSpoonScore(e){
         dispatch(orderBySpoonacularScore(e.target.value))
+        setCurrentPage(1)
+        setScore(e.target.value)
     }
 
     return (
@@ -73,7 +83,7 @@ export default function Home(){
                 {currentRecipes?.map(recipe => {
                     return (
                         <Link to={`/recipe/${recipe.id}`}>
-                        <Card image={recipe.image} title={recipe.title} diets={recipe.diets.map(r => r.name) + " "}></Card>
+                        <Card image={recipe.image} title={recipe.title} diets={recipe.diets.map(r => r.name) + " "} key={recipe.id} ></Card>
                         </Link>
                         )
                     })
