@@ -1,0 +1,51 @@
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    width: 18rem; 
+    /* con este los ajuste a la cajita, pero me destartalo el orden de todo lo que hice antes ---VER */
+    height: 22rem;
+    align-items: center;
+    border-width: 0.2rem;
+    border-style: outset;
+    background-size:cover;
+    border-radius: 10px;
+    transition: transform .5s;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    margin-right: 2px;
+    margin-left: 2px;
+    background-color: rgba(49, 206, 180, 0.87);
+}
+
+.mainContainer:hover{
+    transform: scale(1.1);
+}
+
+.innerContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;    
+    margin-top: 2px;
+    margin-bottom: 2px;
+    margin-right: 2px;
+    margin-left: 2px;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bolder;
+    align-items: center;
+
+}
+
+.diets {
+    font-size: 12px;
+    font-weight: normal;
+}
+
+.image {
+    width: 18rem;
+    height: 200;
+    border-radius: 10px;
+}

@@ -8,16 +8,22 @@
     width: 100%;
     overflow: hidden;
     height: 100%; 
-    position:fixed  
+    scroll-behavior: smooth;
+    background-attachment: fixed;
 }
 
+
+.firstContainer {
+    display: flex;
+    flex-direction: column;
+}
 .homeTitle {
     color: white;
     flex-direction: column;
     font-family: Lato, Arial, Helvetica, sans-serif;
-    font-size: 80px;
-    text-align: center;    
-    
+    font-size: 50px;
+    text-align: left;    
+    align-self: left;
     /* 
     color: rgb(247, 35, 35);
     font-family: 'Monoton', cursive;
@@ -37,7 +43,7 @@
     cursor: pointer;
     transition-duration: 0.4s;
     margin-top: 1px;
-    margin-top: 40px;
+    margin-top: 1px;
     margin-left: 45%;
 }
 

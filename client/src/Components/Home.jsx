@@ -40,47 +40,53 @@ export default function Home(){
     // Handle de cada select
     function handleFilteredDiet(e){
         dispatch(filteredByDiet(e.target.value))
+        e.preventDefault()
     }
 
     function handleSortedRecipesTitle(e){
         dispatch(orderByTitle(e.target.value))
         setCurrentPage(1)
         setOrder(e.target.value)
+        e.preventDefault()
     }
 
     function handleSortedRecipesSpoonScore(e){
         dispatch(orderBySpoonacularScore(e.target.value))
         setCurrentPage(1)
         setScore(e.target.value)
+        e.preventDefault()
     }
 
     return (
-        <div className={styles.background}>   
-           <h1 className={styles.homeTitle}>Recipe Book</h1>
-            <Link to="/create">
-               <button className={styles.button}>Create Recipe</button>
-            </Link>
-           <SearchBar></SearchBar>
-           <Paginado recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginado={paginado}></Paginado>
-            <div>
-                
-                <select onChange={(e) => handleSortedRecipesTitle(e)}>
-                    <option value="">Select Order</option>
-                    <option value="Asc">A to Z</option>
-                    <option value="Desc">Z to A</option>
-                </select>
-                <select onChange={(e) => handleSortedRecipesSpoonScore(e)}>
-                    <option value="">Select Score</option>
-                    <option value="SpoonacularMax">Max Score</option>
-                    <option value="SpoonacularMin">Min Score</option>
-                </select>
-                <select onChange={e => handleFilteredDiet(e)}>
-                    <option value="">Select Diets</option>
-                    {allDiets?.map(diet => {
+        <div className={styles.background}>
+            <div className={styles.firstContainer}>
+                <h1 className={styles.homeTitle}>Recipe Book</h1>
+                <div>
+                    <SearchBar></SearchBar>
+                    <select onChange={(e) => handleSortedRecipesTitle(e)}>
+                        <option value="">Select Order</option>
+                        <option value="Asc">A to Z</option>
+                        <option value="Desc">Z to A</option>
+                    </select>
+                    <select onChange={(e) => handleSortedRecipesSpoonScore(e)}>
+                        <option value="">Select Score</option>
+                        <option value="SpoonacularMax">Max Score</option>
+                        <option value="SpoonacularMin">Min Score</option>
+                    </select>
+                    <select onChange={e => handleFilteredDiet(e)}>
+                        <option value="">Select Diets</option>
+                        {allDiets?.map(diet => {
                         return ( <option value={diet.name}>{diet.name}</option>)
                         })
-                    }
-                </select>
+                        }
+                    </select>
+                    <Link to="/create">
+                        <button className={styles.button}>Create Recipe</button>
+                    </Link>
+                </div>
+            </div>
+            <div>
+                <Paginado recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginado={paginado}></Paginado>
             </div>
             <div className={styles.recipeContainer}>
                 {currentRecipes?.map(recipe => {

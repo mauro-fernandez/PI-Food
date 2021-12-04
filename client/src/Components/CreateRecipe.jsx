@@ -86,7 +86,7 @@ export default function RecipeCreate(){
 
     useEffect(()=> {
         dispatch(getDiets())
-    })
+    }) //ver aca porque hace un loop de /types 
     
     return(
         <div>
