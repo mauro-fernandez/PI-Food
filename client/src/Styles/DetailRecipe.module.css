@@ -3,31 +3,34 @@
     height: 100%;
     background-image: url("https://images.unsplash.com/photo-1515003197210-e0cd71810b5f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80"); 
     display: flex;
-    align-items:flex-end;
+    flex-direction: column;
     background-position: center; 
     background-size: cover;
     background-repeat: no-repeat;
-    width: 100%;
     overflow: hidden;
-    height: 100%; 
     scroll-behavior: smooth;
     background-attachment: fixed;
 }
 
 .box {
-    position:relative;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
     background: rgba(233, 228, 228, 0.651);
-    width: 800px;
-    margin: 20px auto;
+    margin-top: 60px;
+    margin-bottom: 20px;
+    margin-left: 200px;
+    margin-right: 200px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 20px;
+    padding-left: 20px;
     box-shadow: 0px 0px 30px 2px rgb(44, 43, 43);
     font-family: 'Dosis', sans-serif;
     font-size: 200;
     border-color: rgb(227, 230, 227);
     border-style: solid;
-    /* width: auto; */
     height:auto;   
-    display: flex;
-    flex-direction: column;
 }
 
 .image {
@@ -56,6 +59,13 @@
     list-style-type: none;
 }
 
+.boxButton {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
 .button {
     background-color: rgb(0, 0, 0);;
     flex-direction: column;

@@ -61,31 +61,31 @@ export default function Home(){
         <div className={styles.background}>
             <div className={styles.firstContainer}>
                 <h1 className={styles.homeTitle}>Recipe Book</h1>
-                <div>
-                    <SearchBar></SearchBar>
-                    <select onChange={(e) => handleSortedRecipesTitle(e)}>
-                        <option value="">Select Order</option>
-                        <option value="Asc">A to Z</option>
-                        <option value="Desc">Z to A</option>
-                    </select>
-                    <select onChange={(e) => handleSortedRecipesSpoonScore(e)}>
-                        <option value="">Select Score</option>
-                        <option value="SpoonacularMax">Max Score</option>
-                        <option value="SpoonacularMin">Min Score</option>
-                    </select>
-                    <select onChange={e => handleFilteredDiet(e)}>
-                        <option value="">Select Diets</option>
-                        {allDiets?.map(diet => {
-                        return ( <option value={diet.name}>{diet.name}</option>)
-                        })
-                        }
-                    </select>
-                    <Link to="/create">
-                        <button className={styles.button}>Create Recipe</button>
-                    </Link>
-                </div>
+                <Link to="/create">
+                    <button className={styles.button}>Create Recipe</button>
+                </Link>
             </div>
-            <div>
+            <div className={styles.secondContainer}>
+                <select className={styles.selectBar} onChange={(e) => handleSortedRecipesTitle(e)}>
+                    <option value="">Select Order</option>
+                    <option value="Asc">A to Z</option>
+                    <option value="Desc">Z to A</option>
+                </select>
+                <select className={styles.selectBar} onChange={(e) => handleSortedRecipesSpoonScore(e)}>
+                    <option value="">Select Score</option>
+                    <option value="SpoonacularMax">Max Spoonacular Score</option>
+                    <option value="SpoonacularMin">Min Spoonacular Score</option>
+                </select>
+                <select className={styles.selectBar} onChange={e => handleFilteredDiet(e)}>
+                    <option value="">Select Diets</option>
+                    {allDiets?.map(diet => {
+                        return ( <option value={diet.name}>{diet.name}</option>)
+                    })
+                }
+                </select>
+                <SearchBar></SearchBar>
+            </div>
+            <div className={styles.paginadoContainer}>
                 <Paginado recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginado={paginado}></Paginado>
             </div>
             <div className={styles.recipeContainer}>
@@ -97,6 +97,9 @@ export default function Home(){
                         )
                     })
                 }
+            </div>
+            <div  className={styles.paginadoContainer}>
+                <Paginado recipesPerPage={recipesPerPage} allRecipes={allRecipes.length} paginado={paginado}></Paginado>
             </div>        
         </div>
     )

@@ -2,16 +2,15 @@ import React, { useState, useEffect } from "react";
 import { Link ,  useNavigate } from "react-router-dom"
 import { postRecipe , getDiets } from "../Redux/actions"
 import { useDispatch , useSelector } from "react-redux"
+import styles from "../Styles/CreateRecipe.module.css"
 
 function validate(post){
     let errors = {}
     if (!post.title){
         errors.title = "Your recipe needs a title!"
-    }
-    if (!post.summary){
+    } else if (!post.summary){
         errors.summary = "Give a brief explanation of your recipe"
-    }
-    if (!post.instructions){
+    } else if (!post.instructions){
         errors.instructions = "Don´t forget to tell us how you did it"
     }
     return errors
@@ -24,6 +23,10 @@ export default function RecipeCreate(){
     const allDiets = useSelector((state) => state.diets)
     const [errors, setErrors] = useState({})
 
+    useEffect(() => {
+        dispatch(getDiets())
+    }, [dispatch])
+    
     const [post, setPost] = useState({
         title: "",
         summary: "",
@@ -84,62 +87,61 @@ export default function RecipeCreate(){
         }
     }
 
-    useEffect(()=> {
-        dispatch(getDiets())
-    }) //ver aca porque hace un loop de /types 
-    
+
     return(
-        <div>
+        <div className={styles.background}>
             <Link to="/home" >
-                <button>Home</button>
+                <button className={styles.button}>Home</button>
             </Link>
-            <h1>Create your own Recipe</h1>
-            <form onSubmit={(e) => handleSubmit(e)}>
-                <div>
-                    <label>Title</label>
-                    <input type="text" value={post.title} name="title" onChange={(e) => handleChange(e)} ></input>
-                    {errors.title && (<p>{errors.title}</p>)}
+            <h1 className={styles.mainTitle}>Create your own Recipe</h1>
+            <form className={styles.formContainer}>
+                <div className={styles.subContainer}>
+                    <label className={styles.subTitle}>Title</label>
+                    <input className={styles.subInput} type="text" value={post.title} name="title" onChange={(e) => handleChange(e)} ></input>
+                    {errors.title && (<p className={styles.error}>{errors.title}</p>)}
                 </div>
-                <div>
-                    <label>Summary</label>
-                    <textarea type="text" value={post.summary} name="summary" maxLength="1000" onChange={(e) => handleChange(e)}></textarea>
-                    {errors.summary && (<p>{errors.summary}</p>)}
+                <div className={styles.subContainer}>
+                    <label className={styles.subTitle}>Summary</label>
+                    <textarea className={styles.subTextBox} type="text" value={post.summary} name="summary" maxLength="1000" onChange={(e) => handleChange(e)}></textarea>
+                    {errors.summary && (<p className={styles.error}>{errors.summary}</p>)}
                 </div>
-                <div>
-                    <label>Spoonacular Score</label>
-                    <input type="range" min="0" max="100" value={post.spoonacularScore} name="spoonacularScore" onChange={(e) => handleChange(e)}></input>
-                    {post.spoonacularScore}
+                <div className={styles.subContainer}>
+                    <label className={styles.subTitle}>Spoonacular Score</label>
+                    <input className={styles.subInput} type="range" min="0" max="100" value={post.spoonacularScore} name="spoonacularScore" onChange={(e) => handleChange(e)}></input>
+                    {<p className={styles.data}>{post.spoonacularScore}</p>}
                 </div>
-                <div>
-                    <label>Health Score</label>
-                    <input type="range" min="0" max="100" value={post.healthScore} name="healthScore" onChange={(e) => handleChange(e)}></input>
-                    {post.healthScore}
+                <div className={styles.subContainer}>
+                    <label className={styles.subTitle}>Health Score</label>
+                    <input className={styles.subInput} type="range" min="0" max="100" value={post.healthScore} name="healthScore" onChange={(e) => handleChange(e)}></input>
+                    {<p className={styles.data}>{post.healthScore}</p>}
                 </div>
-                <div>
-                    <label>Instructions</label>
-                    <textarea type="text" value={post.instructions} name="instructions" onChange={(e) => handleChange(e)}></textarea>
-                    {errors.instructions && (<p>{errors.instructions}</p>)}
+                <div className={styles.subContainer}>
+                    <label className={styles.subTitle}>Instructions</label>
+                    <textarea className={styles.subTextBox} type="text" value={post.instructions} name="instructions" onChange={(e) => handleChange(e)}></textarea>
+                    {errors.instructions && (<p className={styles.error}>{errors.instructions}</p>)}
                 </div>
-                <div>
-                    <label>Load URL Image</label>
-                    <input type="url" value={post.image} name="image" onChange={(e) => handleChange(e)}></input>
+                <div className={styles.subContainer}>
+                    <label className={styles.subTitle}>Load URL Image</label>
+                    <input className={styles.subInput} type="url" value={post.image} name="image" onChange={(e) => handleChange(e)}></input>
                 </div>
-                <div>
-                    <select onChange={(e)=> handleSelect(e)}>
+                <div className={styles.subContainer}>
+                    <select className={styles.select} onChange={(e)=> handleSelect(e)}>
                         <option value="" name="diets" >Select Diets</option>
-                        {allDiets?.map(diet => {
+                        <div>
+                            {allDiets?.map(diet => {
                             return ( <option value={diet.id} key={diet.id}>{diet.name}</option>)
                             })
-                        }
+                            }
+                        </div>
                     </select>
-                    <ul><li>{post.diets.map(diet => 
+                    <ul className={styles.diets}><li>{post.diets.map(diet => 
                             <div>
                                 <p>{diet}</p>
                                 <button onClick={() => handleDietDelete(diet)}>X</button>
                             </div>
                         )}</li></ul>
                 </div>
-                <button type="submit" >Create Recipe!</button>
+                <button className={styles.submitButton}type="submit" onSubmit={(e) => handleSubmit(e)}>Create Recipe</button>
             </form>
         </div>
     )

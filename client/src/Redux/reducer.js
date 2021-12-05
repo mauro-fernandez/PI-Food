@@ -36,7 +36,7 @@ function rootReducer (state = initialState, action){
                 ...state,
                 allRecipes: dietFiltered
             }
-        case "ORDER_BY_TITLE":
+        case "ORDER_BY_TITLE2":
             const sortedRecipesTitle = action.payload === "Asc" ? 
                 state.allRecipes.sort(function(a,b) {
                     if(a.title > b.title){
@@ -58,39 +58,74 @@ function rootReducer (state = initialState, action){
             return {
                 ...state,
                 allRecipes: sortedRecipesTitle
-            }
-            case "ORDER_BY_SPOONACULAR_SCORE":
-                const sortedRecipesSpoonScore = action.payload === "SpoonacularMax" ? 
-                    state.allRecipes.sort(function(a,b) {
-                        if(a.spoonacularScore > b.spoonacularScore){
+            } // este no lo use, mejor el de abajo
+        case "ORDER_BY_TITLE":
+            const newRecipes = state.filteredRecipes 
+            if (action.payload === ""){
+                return {
+                    ...state,
+                    allRecipes: newRecipes
+                }
+            } else if (action.payload === "Asc") {
+                const sortedRecipesTitle = state.allRecipes.sort(function(a,b) {
+                        if(a.title > b.title){
                             return 1
                         }
-                        if (b.spoonacularScore > a.spoonacularScore){
+                        if (b.title > a.title){
                             return -1
                         }
                         return 0
-                    }) : state.allRecipes.sort(function(a,b) {
-                        if(a.spoonacularScore > b.spoonacularScore){
+                    }) 
+                return {
+                    ...state,
+                    allRecipes: sortedRecipesTitle
+                }} else {
+                    const sortedRecipesTitle = state.allRecipes.sort(function(a,b) {
+                        if(a.title > b.title){
                             return -1
                         }
-                        if (b.spoonacularScore > a.spoonacularScore){
+                        if (b.title > a.title){
                             return 1
                         }
                         return 0
                     })
                 return {
                     ...state,
-                    allRecipes: sortedRecipesSpoonScore
+                    allRecipes: sortedRecipesTitle
                 }
-            case "SEARCH_RECIPE":
-                return {
-                    ...state,
-                    allRecipes: action.payload
-                }
-            case "POST_RECIPE": //esto lo hizo asi selene, no le veo el sentido
-                return {
-                    ...state
-                }
+        }
+        case "ORDER_BY_SPOONACULAR_SCORE":
+            const sortedRecipesSpoonScore = action.payload === "SpoonacularMax" ? 
+                state.allRecipes.sort(function(a,b) {
+                    if(a.spoonacularScore < b.spoonacularScore){
+                        return 1
+                    }
+                    if (b.spoonacularScore < a.spoonacularScore){
+                        return -1
+                    }
+                    return 0
+                }) : state.allRecipes.sort(function(a,b) {
+                    if(a.spoonacularScore < b.spoonacularScore){
+                        return -1
+                    }
+                    if (b.spoonacularScore < a.spoonacularScore){
+                        return 1
+                    }
+                    return 0
+                })
+            return {
+                ...state,
+                allRecipes: sortedRecipesSpoonScore
+            }
+        case "SEARCH_RECIPE":
+            return {
+                ...state,
+                allRecipes: action.payload
+            }
+        case "POST_RECIPE": //esto lo hizo asi selene, no le veo el sentido
+            return {
+                ...state
+            }
         default: return state
     }
 } 

@@ -16,9 +16,13 @@ export default function DetailRecipe(){
         dispatch(getDetail(recipeId.id))
     },[dispatch])
 
+    // function handleButton(e){
+    //     e.preventDefault()
+    // }
 
     return (
         <div className={styles.container}>
+            <div>
             {
                 (detailRecipe) ?
                         <div className={styles.box}>
@@ -38,9 +42,12 @@ export default function DetailRecipe(){
                     
                 : <p>Loading ...</p>
             }
-            <Link to="/home">
-                <button className={styles.button}>Go back!</button>
-            </Link>
+            </div>
+            <div className={styles.boxButton}>
+                <Link to="/home">
+                    <button className={styles.button}>Go back!</button>
+                </Link>
+            </div>
         </div>
     )
 

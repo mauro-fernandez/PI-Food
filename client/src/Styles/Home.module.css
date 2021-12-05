@@ -15,15 +15,18 @@
 
 .firstContainer {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    padding-top: 15px;
+    padding-left: 15px;
 }
+
 .homeTitle {
     color: white;
-    flex-direction: column;
     font-family: Lato, Arial, Helvetica, sans-serif;
-    font-size: 50px;
+    font-size: 70px;
     text-align: left;    
     align-self: left;
+    padding-right: 50%;
     /* 
     color: rgb(247, 35, 35);
     font-family: 'Monoton', cursive;
@@ -33,18 +36,19 @@
 
 .button {
     background-color: transparent;
-    flex-direction: column;
     color: #fff;
     font-size: 25px;
     font-family: Lato, Arial, Helvetica, sans-serif;
     border-radius: 9999px;
     border: #fff solid 3px;
-    padding: 25px;
     cursor: pointer;
     transition-duration: 0.4s;
-    margin-top: 1px;
-    margin-top: 1px;
-    margin-left: 45%;
+    text-align: justify;
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+    margin-top: 50px;
 }
 
 .button:hover {
@@ -54,8 +58,32 @@
     transition: 0.8s;
 }
 
+.secondContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 20px;
+    margin-right: 60px;
+}
+
+.selectBar{
+    border-style: double;
+    height: 30px;
+    width: 230px;
+    font-size: 20px;
+    font-weight: 200;
+}
+
+.paginadoContainer {
+    align-content: center;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
 .recipeContainer {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    text-decoration: none;
 }

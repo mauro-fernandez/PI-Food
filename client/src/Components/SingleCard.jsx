@@ -3,6 +3,7 @@ import styles from "../Styles/SingleCard.module.css"
 
 
 export default function Card({ image , title , diets }){
+
     return (
         <div className={styles.mainContainer}>
             <img className={styles.image} src={image} alt="Image not found"/>
