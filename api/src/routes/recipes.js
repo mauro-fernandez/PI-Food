@@ -56,7 +56,7 @@ router.post("/create", async (req,res,next) => {
         const proms = diets.map(diet => recipeCreate.addDiet(diet));
         await Promise.all(proms)
 
-        res.send({ msg: "Recipe successfully created" })
+        res.status(200).send({ msg: "Recipe successfully created" })
 
     } catch (error) {
         next(error)

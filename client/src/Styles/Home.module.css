@@ -16,8 +16,8 @@
 .firstContainer {
     display: flex;
     flex-direction: row;
-    padding-top: 15px;
-    padding-left: 15px;
+    margin-top: 15px;
+    margin-left: 15px;
 }
 
 .homeTitle {
@@ -39,7 +39,7 @@
     color: #fff;
     font-size: 25px;
     font-family: Lato, Arial, Helvetica, sans-serif;
-    border-radius: 9999px;
+    border-radius: 100px;
     border: #fff solid 3px;
     cursor: pointer;
     transition-duration: 0.4s;
@@ -86,4 +86,13 @@
     flex-wrap: wrap;
     justify-content: space-evenly;
     text-decoration: none;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.diet {
+    display: inline;
+
 }

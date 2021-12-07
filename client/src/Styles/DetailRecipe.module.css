@@ -39,6 +39,8 @@
     border-width: 3px;
     border-color: whitesmoke;
     border-style: solid;
+    width: 600px;
+    height: 380px;
 }
 
 .mainTitle {

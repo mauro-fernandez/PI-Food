@@ -23,10 +23,11 @@ export default function RecipeCreate(){
     const allDiets = useSelector((state) => state.diets)
     const [errors, setErrors] = useState({})
 
-    useEffect(() => {
+    /* useEffect(() => {
         dispatch(getDiets())
     }, [dispatch])
-    
+    */
+
     const [post, setPost] = useState({
         title: "",
         summary: "",
@@ -65,8 +66,11 @@ export default function RecipeCreate(){
     }
 
     function handleSubmit(e){
-        e.preventDefault()
-        if(!post.diets.length){
+        if(!post.title && !post.summary){
+            e.preventDefault()
+            return alert("The recipe needs a title and a summary")
+        } else if(!post.diets.length){
+            e.preventDefault()
             return alert("You need to add at least one diet for the recipe")
         } else {
             if (!post.image) {
@@ -126,13 +130,11 @@ export default function RecipeCreate(){
                 </div>
                 <div className={styles.subContainer}>
                     <select className={styles.select} onChange={(e)=> handleSelect(e)}>
-                        <option value="" name="diets" >Select Diets</option>
-                        <div>
+                        <option value="" hidden name="diets" >Select Diets</option>
                             {allDiets?.map(diet => {
                             return ( <option value={diet.id} key={diet.id}>{diet.name}</option>)
-                            })
-                            }
-                        </div>
+                            }) // value={diet.id} asi lo habia armado en el modelo
+                            } 
                     </select>
                     <ul className={styles.diets}><li>{post.diets.map(diet => 
                             <div>
@@ -141,7 +143,7 @@ export default function RecipeCreate(){
                             </div>
                         )}</li></ul>
                 </div>
-                <button className={styles.submitButton}type="submit" onSubmit={(e) => handleSubmit(e)}>Create Recipe</button>
+                <button className={styles.submitButton} type="submit" onClick={(e) => handleSubmit(e)}>Create Recipe</button>
             </form>
         </div>
     )

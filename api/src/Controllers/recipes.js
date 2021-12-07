@@ -5,7 +5,7 @@ const { API_KEY, API_KEY2 ,API_KEY3 ,API_KEY4 ,API_KEY5 } = process.env;
 
 const getApiRecipes = async() =>{
 
-    const apiInfo = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY5}&addRecipeInformation=true&number=100`)
+    const apiInfo = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
     const apiRecipes = apiInfo.data?.results.map(element => {
         return {
             id: element.id,
@@ -45,7 +45,7 @@ const getAllRecipes = async () => {
 
 const searchByIdAtApi = async(id)=>{
     try {
-        const recipe = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY5}`) 
+        const recipe = await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`) 
         const detail = recipe.data
         return {
             id: detail.id,

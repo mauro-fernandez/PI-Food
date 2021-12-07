@@ -8,7 +8,7 @@ const { Diet } = require("../db")
 router.get("/", async (req,res,next) => {
     try {
         let dietDb = await Diet.findAll()
-        res.send(dietDb)
+        res.status(200).send(dietDb)
         
     } catch (error) {
         next(error)

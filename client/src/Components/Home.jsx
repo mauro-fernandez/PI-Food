@@ -91,8 +91,8 @@ export default function Home(){
             <div className={styles.recipeContainer}>
                 {currentRecipes?.map(recipe => {
                     return (
-                        <Link to={`/recipe/${recipe.id}`}>
-                        <Card image={recipe.image} title={recipe.title} diets={recipe.diets.map(r => r.name) + " "} key={recipe.id} ></Card>
+                        <Link className={styles.link} to={`/recipe/${recipe.id}`}>
+                        <Card image={recipe.image} title={recipe.title} diets={recipe.diets.map(r => <p className={styles.diet} >{r.name},   </p>)} spoonacularScore={recipe.spoonacularScore} key={recipe.id} ></Card>
                         </Link>
                         )
                     })
