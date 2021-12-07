@@ -68,12 +68,12 @@ export default function Home(){
             </div>
             <div className={styles.secondContainer}>
                 <select className={styles.selectBar} onChange={(e) => handleSortedRecipesTitle(e)}>
-                    <option value="">Select Order</option>
+                    <option value="" >Select Order</option>
                     <option value="Asc">A to Z</option>
                     <option value="Desc">Z to A</option>
                 </select>
                 <select className={styles.selectBar} onChange={(e) => handleSortedRecipesSpoonScore(e)}>
-                    <option value="">Select Score</option>
+                    <option value="" >Select Score</option>
                     <option value="SpoonacularMax">Max Spoonacular Score</option>
                     <option value="SpoonacularMin">Min Spoonacular Score</option>
                 </select>

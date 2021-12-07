@@ -15,6 +15,7 @@ function rootReducer (state = initialState, action){
                 allRecipes: action.payload,
                 filteredRecipes: action.payload,
                 // defaultRecipes : action.payload
+                detail: []
             } 
         case "GET_DIETS_TYPES" :
             return {
@@ -38,68 +39,69 @@ function rootReducer (state = initialState, action){
                 ...state,
                 allRecipes: dietFiltered
             }
-        // case "ORDER_BY_TITLE2":
-        //     const sortedRecipesTitle = action.payload === "Asc" ? 
-        //         state.allRecipes.sort(function(a,b) {
-        //             if(a.title > b.title){
-        //                 return 1
-        //             }
-        //             if (b.title > a.title){
-        //                 return -1
-        //             }
-        //             return 0
-        //         }) : state.allRecipes.sort(function(a,b) {
-        //             if(a.title > b.title){
-        //                 return -1
-        //             }
-        //             if (b.title > a.title){
-        //                 return 1
-        //             }
-        //             return 0
-        //         })
-        //     return {
-        //         ...state,
-        //         allRecipes: sortedRecipesTitle
-        //     } 
-            // este no lo use, mejor el de abajo
         case "ORDER_BY_TITLE":
-            // const newRecipes = state.filteredRecipes 
-            // if (action.payload === ""){
-            //     return {
-            //         ...state,
-            //         allRecipes: newRecipes
-            //     }
-            // } else 
-            if (action.payload === "Asc") {
-                const sortedRecipesTitle = state.allRecipes.sort(function(a,b) {
-                        if(a.title.toLowerCase() > b.title.toLowerCase()){
-                            return 1
-                        }
-                        if (b.title.toLowerCase() > a.title.toLowerCase()){
-                            return -1
-                        }
-                        return 0
-                        }) 
-                    return {
-                        ...state,
-                        allRecipes: sortedRecipesTitle
+            const sortedRecipesTitle = action.payload === "Asc" ? 
+                state.allRecipes.sort(function( a , b ) {
+                    if(a.title.toLowerCase() > b.title.toLowerCase()){
+                        return 1
                     }
-                } else if (action.payload === "Desc"){
-                    const sortedRecipesTitle = state.allRecipes.sort(function(a,b) {
-                        if(a.title.toLowerCase() > b.title.toLowerCase()){
-                            return -1
-                        }
-                        if (b.title.toLowerCase() > a.title.toLowerCase()){
-                            return 1
-                        }
-                        return 0
-                        })
-                    return {
-                        ...state,
-                        allRecipes: sortedRecipesTitle
+                    if (b.title.toLowerCase() > a.title.toLowerCase()){
+                        return -1
                     }
-        }
+                    return 0
+                }) : state.allRecipes.sort(function( a , b ) {
+                    if(a.title.toLowerCase() > b.title.toLowerCase()){
+                        return -1
+                    }
+                    if (b.title.toLowerCase() > a.title.toLowerCase()){
+                        return 1
+                    }
+                    return 0
+                })
+            return {
+                ...state,
+                allRecipes: sortedRecipesTitle
+            } 
+            // este no lo use, mejor el de abajo
+        // case "ORDER_BY_TITLE":
+        //     const newRecipes = state.filteredRecipes 
+        //     if (action.payload !== "Asc" && action.payload !== "Desc"){
+        //         return {
+        //             ...state,
+        //             allRecipes: newRecipes
+        //         }
+        //     }
+        //     if (action.payload === "Asc") {
+        //         const sortedRecipesTitle = state.allRecipes.sort(function(a,b) {
+        //                 if(a.title.toLowerCase() > b.title.toLowerCase()){
+        //                     return 1
+        //                 }
+        //                 if (b.title.toLowerCase() > a.title.toLowerCase()){
+        //                     return -1
+        //                 }
+        //                 return 0
+        //                 }) 
+        //             return {
+        //                 ...state,
+        //                 allRecipes: sortedRecipesTitle
+        //             }
+        //         } else if (action.payload === "Desc"){
+        //             const sortedRecipesTitle = state.allRecipes.sort(function(a,b) {
+        //                 if(a.title.toLowerCase() > b.title.toLowerCase()){
+        //                     return -1
+        //                 }
+        //                 if (b.title.toLowerCase() > a.title.toLowerCase()){
+        //                     return 1
+        //                 }
+        //                 return 0
+        //                 })
+        //             return {
+        //                 ...state,
+        //                 allRecipes: sortedRecipesTitle
+        //             }
+        // }
         case "ORDER_BY_SPOONACULAR_SCORE":
+            
             const sortedRecipesSpoonScore = action.payload === "SpoonacularMax" ? 
                 state.allRecipes.sort(function(a,b) {
                     if(a.spoonacularScore < b.spoonacularScore){
