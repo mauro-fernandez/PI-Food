@@ -136,12 +136,15 @@ export default function RecipeCreate(){
                             }) // value={diet.id} asi lo habia armado en el modelo
                             } 
                     </select>
-                    <ul className={styles.diets}><li>{post.diets.map(diet => 
-                            <div>
+                    <ul className={styles.diets}>
+                        <li>{post.diets.map(diet => 
+                            <div className={styles.selectedDiets}>
                                 <p>{diet}</p>
-                                <button onClick={() => handleDietDelete(diet)}>X</button>
+                                <button className={styles.crossButton} onClick={() => handleDietDelete(diet)}>x</button>
                             </div>
-                        )}</li></ul>
+                            )}
+                        </li>
+                    </ul>
                 </div>
                 <button className={styles.submitButton} type="submit" onClick={(e) => handleSubmit(e)}>Create Recipe</button>
             </form>

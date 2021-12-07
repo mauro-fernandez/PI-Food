@@ -5,7 +5,7 @@ const { API_KEY, API_KEY2 ,API_KEY3 ,API_KEY4 ,API_KEY5 } = process.env;
 
 const preLoadDiets = async() => {
     try {
-        const apiInfo = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`)
+        const apiInfo = await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY4}&addRecipeInformation=true&number=100`)
         const apiDiets = apiInfo.data?.results.map(element => element.diets)
         const repeatedDiets = apiDiets.flat()
         const finalListOfDiets = [...new Set(repeatedDiets)] //el set solo funciona con valores primitivos, no objetos OJO!

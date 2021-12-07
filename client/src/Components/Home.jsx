@@ -40,6 +40,7 @@ export default function Home(){
     // Handle de cada select
     function handleFilteredDiet(e){
         dispatch(filteredByDiet(e.target.value))
+        setCurrentPage(1)
         e.preventDefault()
     }
 

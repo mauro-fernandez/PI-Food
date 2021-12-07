@@ -4,6 +4,7 @@ const initialState = {
     filteredRecipes: [], // para hacerle filtros y guardar el state
     diets: [], // me traigo las dietas
     detail: [] // me trago el detalle de cada una por id
+    // defaultRecipes: [],
 }
 
 function rootReducer (state = initialState, action){
@@ -12,7 +13,8 @@ function rootReducer (state = initialState, action){
             return {
                 ...state,
                 allRecipes: action.payload,
-                filteredRecipes: action.payload
+                filteredRecipes: action.payload,
+                // defaultRecipes : action.payload
             } 
         case "GET_DIETS_TYPES" :
             return {
@@ -36,63 +38,66 @@ function rootReducer (state = initialState, action){
                 ...state,
                 allRecipes: dietFiltered
             }
-        case "ORDER_BY_TITLE2":
-            const sortedRecipesTitle = action.payload === "Asc" ? 
-                state.allRecipes.sort(function(a,b) {
-                    if(a.title > b.title){
-                        return 1
-                    }
-                    if (b.title > a.title){
-                        return -1
-                    }
-                    return 0
-                }) : state.allRecipes.sort(function(a,b) {
-                    if(a.title > b.title){
-                        return -1
-                    }
-                    if (b.title > a.title){
-                        return 1
-                    }
-                    return 0
-                })
-            return {
-                ...state,
-                allRecipes: sortedRecipesTitle
-            } // este no lo use, mejor el de abajo
+        // case "ORDER_BY_TITLE2":
+        //     const sortedRecipesTitle = action.payload === "Asc" ? 
+        //         state.allRecipes.sort(function(a,b) {
+        //             if(a.title > b.title){
+        //                 return 1
+        //             }
+        //             if (b.title > a.title){
+        //                 return -1
+        //             }
+        //             return 0
+        //         }) : state.allRecipes.sort(function(a,b) {
+        //             if(a.title > b.title){
+        //                 return -1
+        //             }
+        //             if (b.title > a.title){
+        //                 return 1
+        //             }
+        //             return 0
+        //         })
+        //     return {
+        //         ...state,
+        //         allRecipes: sortedRecipesTitle
+        //     } 
+            // este no lo use, mejor el de abajo
         case "ORDER_BY_TITLE":
-            const newRecipes = state.filteredRecipes 
-            if (action.payload === ""){
-                return {
-                    ...state,
-                    allRecipes: newRecipes
-                }
-            } else if (action.payload === "Asc") {
+            // const newRecipes = state.filteredRecipes 
+            // if (action.payload === ""){
+            //     return {
+            //         ...state,
+            //         allRecipes: newRecipes
+            //     }
+            // } else 
+            if (action.payload === "Asc") {
                 const sortedRecipesTitle = state.allRecipes.sort(function(a,b) {
-                        if(a.title > b.title){
+                        if(a.title.toLowerCase() > b.title.toLowerCase()){
                             return 1
                         }
-                        if (b.title > a.title){
+                        if (b.title.toLowerCase() > a.title.toLowerCase()){
                             return -1
                         }
                         return 0
-                    }) 
-                return {
-                    ...state,
-                    allRecipes: sortedRecipesTitle
-                }} else {
+                        }) 
+                    return {
+                        ...state,
+                        allRecipes: sortedRecipesTitle
+                    }
+                } else if (action.payload === "Desc"){
                     const sortedRecipesTitle = state.allRecipes.sort(function(a,b) {
-                        if(a.title > b.title){
+                        if(a.title.toLowerCase() > b.title.toLowerCase()){
                             return -1
                         }
-                        if (b.title > a.title){
+                        if (b.title.toLowerCase() > a.title.toLowerCase()){
                             return 1
                         }
                         return 0
-                    })
-                return {
-                    ...state,
-                    allRecipes: sortedRecipesTitle
-                }
+                        })
+                    return {
+                        ...state,
+                        allRecipes: sortedRecipesTitle
+                    }
         }
         case "ORDER_BY_SPOONACULAR_SCORE":
             const sortedRecipesSpoonScore = action.payload === "SpoonacularMax" ? 
@@ -122,10 +127,10 @@ function rootReducer (state = initialState, action){
                 ...state,
                 allRecipes: action.payload
             }
-        case "POST_RECIPE": //esto lo hizo asi selene, no le veo el sentido
-            return {
-                ...state
-            }
+        // case "POST_RECIPE": //esto lo hizo asi selene, no le veo el sentido
+        //     return {
+        //         ...state
+        //     }
         default: return state
     }
 } 
