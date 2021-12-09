@@ -129,10 +129,6 @@ function rootReducer (state = initialState, action){
                 ...state,
                 allRecipes: action.payload
             }
-        // case "POST_RECIPE": //esto lo hizo asi selene, no le veo el sentido
-        //     return {
-        //         ...state
-        //     }
         default: return state
     }
 } 

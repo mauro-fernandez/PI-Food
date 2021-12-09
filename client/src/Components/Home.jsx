@@ -71,6 +71,8 @@ export default function Home(){
                     <option value="" >Select Order</option>
                     <option value="Asc">A to Z</option>
                     <option value="Desc">Z to A</option>
+
+
                 </select>
                 <select className={styles.selectBar} onChange={(e) => handleSortedRecipesSpoonScore(e)}>
                     <option value="" >Select Score</option>

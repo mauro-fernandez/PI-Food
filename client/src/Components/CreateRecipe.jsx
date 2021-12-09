@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link ,  useNavigate } from "react-router-dom"
-import { postRecipe , getDiets } from "../Redux/actions"
+import { postRecipe } from "../Redux/actions"
 import { useDispatch , useSelector } from "react-redux"
 import styles from "../Styles/CreateRecipe.module.css"
 
@@ -21,12 +21,8 @@ export default function RecipeCreate(){
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const allDiets = useSelector((state) => state.diets)
+   
     const [errors, setErrors] = useState({})
-
-    /* useEffect(() => {
-        dispatch(getDiets())
-    }, [dispatch])
-    */
 
     const [post, setPost] = useState({
         title: "",
@@ -47,7 +43,6 @@ export default function RecipeCreate(){
             ...post,
             [e.target.name]: e.target.value
         }))
-    //    console.log(post)
     }
 
     function handleSelect(e){
@@ -133,13 +128,14 @@ export default function RecipeCreate(){
                         <option value="" hidden name="diets" >Select Diets</option>
                             {allDiets?.map(diet => {
                             return ( <option value={diet.id} key={diet.id}>{diet.name}</option>)
-                            }) // value={diet.id} asi lo habia armado en el modelo
+                            })
                             } 
                     </select>
                     <ul className={styles.diets}>
-                        <li>{post.diets.map(diet => 
+                        <li>                            
+                            {post.diets.map(diet => 
                             <div className={styles.selectedDiets}>
-                                <p>{diet}</p>
+                                <p>{allDiets?.find(element => element.id === diet)?.name}</p>
                                 <button className={styles.crossButton} onClick={() => handleDietDelete(diet)}>x</button>
                             </div>
                             )}
