@@ -4,8 +4,11 @@
 
 # Individual Project - Henry Food
 
-<p align="right">
-  <img height="200" src="./cooking.png" />
+<p align="center">
+  <img height="200" src="./Screenshot_landing.jpg" />
+  <img height="200" src="./Screenshot_home.jpg" />
+  <img height="200" src="./Screenshot_form.jpg" />
+  <img height="200" src="./Screenshot_detail.jpg" />
 </p>
 
 ## Objetivos del Proyecto
@@ -18,7 +21,7 @@
 
 ## Horarios y Fechas
 
-El proyecto tendrá una duración máxima de tres semanas. En el caso de que completan todas las tareas antes de dicho lapso podrán avisar a su Instructor para coordinar una fecha de presentación del trabajo (DEMO).
+El proyecto académico tendrá una duración máxima de tres semanas. En el caso de que completan todas las tareas antes de dicho lapso podrán avisar a su Instructor para coordinar una fecha de presentación del trabajo (DEMO).
 
 ## Comenzando
 
@@ -171,4 +174,3 @@ __IMPORTANTE__: No está permitido utilizar los filtrados, ordenamientos y pagin
 - [ ] Al menos tener un componente del frontend con sus tests respectivos
 - [x] Al menos tener una ruta del backend con sus tests respectivos
 - [x] Al menos tener un modelo de la base de datos con sus tests respectivos
-	:white_check_mark:
