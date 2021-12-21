@@ -1,18 +1,29 @@
 import axios from "axios"
 
+// export function getRecipes(){
+//     return async function(dispatch){
+//         try {
+//             var json = await axios.get("http://localhost:3001/recipes")
+//             return dispatch({
+//                 type: "GET_RECIPES",
+//                 payload: json.data
+//             })
+//         } catch (error) {
+//             console.log(error)
+//         }
+//     }
+// }  esta forma es con async await, la de abajo con .then
+
 export function getRecipes(){
-    return async function(dispatch){
-        try {
-            var json = await axios.get("http://localhost:3001/recipes")
-            return dispatch({
-                type: "GET_RECIPES",
-                payload: json.data
-            })
-        } catch (error) {
-            console.log(error)
-        }
-    }
-}
+    return function(dispatch){
+             axios.get("http://localhost:3001/recipes")
+            .then(response => {
+                return dispatch({
+                    type: "GET_RECIPES",
+                    payload: response.data
+                })
+    })
+}}
 
 export function getDiets(){
     return async function(dispatch){

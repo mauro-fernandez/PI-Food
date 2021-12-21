@@ -1,7 +1,7 @@
 
 const initialState = {
     allRecipes: [],   // me trae todo
-    filteredRecipes: [], // para hacerle filtros y guardar el state
+    copyRecipes: [], // para hacerle filtros y guardar el state
     diets: [], // me traigo las dietas
     detail: [] // me trago el detalle de cada una por id
     // defaultRecipes: [],
@@ -13,7 +13,7 @@ function rootReducer (state = initialState, action){
             return {
                 ...state,
                 allRecipes: action.payload,
-                filteredRecipes: action.payload,
+                copyRecipes: action.payload,
                 // defaultRecipes : action.payload
                 detail: []
             } 
@@ -28,7 +28,7 @@ function rootReducer (state = initialState, action){
                 detail: action.payload
             }
         case "FILTERED_BY_DIETS":
-            const recipes = state.filteredRecipes
+            const recipes = state.copyRecipes
             const dietFiltered = action.payload === "" ? recipes : recipes.filter(recipe => {
                     let diet = recipe.diets.map(d => d.name)
                     if (diet.includes(action.payload)){
@@ -62,9 +62,9 @@ function rootReducer (state = initialState, action){
                 ...state,
                 allRecipes: sortedRecipesTitle
             } 
-            // este no lo use, mejor el de abajo
+            // probando cosas: 
         // case "ORDER_BY_TITLE":
-        //     const newRecipes = state.filteredRecipes 
+        //     const newRecipes = state.copyRecipes 
         //     if (action.payload !== "Asc" && action.payload !== "Desc"){
         //         return {
         //             ...state,
