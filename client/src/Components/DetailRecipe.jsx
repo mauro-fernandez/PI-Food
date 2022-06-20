@@ -1,28 +1,26 @@
 import React from "react";
 import { Link , useParams} from "react-router-dom"
 import { useDispatch , useSelector } from "react-redux"
-import { useEffect , useState} from "react";
+import { useEffect } from "react";
 import { getDetail } from "../Redux/actions";
 import styles from "../Styles/DetailRecipe.module.css"
+import Loading from "../Components/Loading"
 
 export default function DetailRecipe(){
     
     const dispatch = useDispatch()
     const recipeId = useParams()
-    const detailRecipe = useSelector((state) => state.detail) 
-    console.log(detailRecipe)
+    const detailRecipe = useSelector((state) => state.detail)
     useEffect(() => {
         dispatch(getDetail(recipeId.id))
     },[dispatch])
 
     return (
         <div className={styles.container}>
-            <div>
+            <div className={styles.subContainer}>           
             {
                 (detailRecipe.length === 0) ? 
-                    <div className={styles.container}>
-                        <p className={styles.loading}>Loading ...</p>
-                    </div> 
+                 <Loading></Loading>
                 :
                     <div className={styles.box}>
                         <img className={styles.image} src={detailRecipe.image} alt="No Image Found"/>
@@ -37,9 +35,7 @@ export default function DetailRecipe(){
                         <p className={styles.info}>{detailRecipe.diets?.map(r => (<li className={styles.diets}>{r.name} </li>))}</p>
                         <h3 className={styles.subTitle}>Instructions</h3>
                         <p className={styles.info}>{detailRecipe.instructions}</p>
-                    </div>
-                    
-                
+                    </div>   
             }
             </div>
             <div className={styles.boxButton}>

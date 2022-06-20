@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch , useSelector } from "react-redux"
-import { getRecipes, getDetail, getDiets , filteredByDiet, orderByTitle, orderBySpoonacularScore} from "../Redux/actions";
+import { getRecipes, getDiets , filteredByDiet, orderByTitle, orderBySpoonacularScore} from "../Redux/actions";
 import { Link } from "react-router-dom"
 import Card from "./SingleCard";
 import Paginado from "./Paginado";
@@ -95,7 +95,7 @@ export default function Home(){
                 {currentRecipes?.map(recipe => {
                     return (
                         <Link className={styles.link} to={`/recipe/${recipe.id}`}>
-                        <Card image={recipe.image} title={recipe.title} diets={recipe.diets.map(r => <p className={styles.diet} >{r.name}</p>)} key={recipe.id} ></Card>
+                        <Card image={recipe.image} title={recipe.title} diets={recipe.diets.map(r => <p>{r.name}</p>)} key={recipe.id} ></Card>
                         </Link>
                         )
                     })

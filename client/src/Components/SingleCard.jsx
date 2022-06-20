@@ -3,13 +3,15 @@ import styles from "../Styles/SingleCard.module.css"
 
 
 export default function Card({ image , title , diets }){
-
+console.log(diets)
     return (
         <div className={styles.mainContainer}>
             <img className={styles.image} src={image} alt="Image not found"/>
-            <div className={styles.innerContainer}>
+            <div>
                 <h3 className={styles.title}>{title}</h3>
-                <h5 className={styles.diets}>{diets}</h5>
+                {diets.map(diet => (
+                    <p className={styles.diets}>{diet}</p>
+                ))}
             </div>
         </div>
     )
